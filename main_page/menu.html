@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main</title>
+  
+  
+
+    <style>
+    body {
+      margin-right: 50px;
+      padding: 0;
+      font-family: Comic Sans MS;
+	  font-weight:bold;
+	  font-size: 20px;
+	  background-color:#d0eecb;
+
+
+    }
+    .container {
+      width: 100%;
+      height: 100vh;
+      /* position: absolute;
+      top: 50%;
+      left: 50%;
+	 
+      transform: translate(-50%, -50%); */
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+	  
+	  
+    }
+    ul {
+      display: flex;
+    }
+    ul li {
+      list-style: none;
+	  border: 1px solid #031926;
+	  
+    }
+    ul li a {
+      text-decoration: none;
+      text-transform: uppercase;
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      color: #000000;
+      transition: 1.0s;
+	  
+	  
+    }
+    ul li a:hover {
+      color: #ffffff;
+
+	  
+    }
+    ul li a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 1px 0 0 #000000,
+                  0 -1px 0 0 #000000;
+      transform: scaleY(5.5);
+      opacity: 0;
+      transition: .5s;
+    }
+    ul li a:hover::before {
+      transform: scaleY(1);
+      opacity: 1;
+	  
+	  
+    }
+    ul li a::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000 ;
+      transform: scale(0);
+      transition: .5s;
+      z-index: -1;
+    }
+    ul li a:hover::after {
+      transform: scale(1);
+    }
+	
+	        @media (max-width: 600px) {
+            .container {
+                flex-direction: column; /* ให้แสดงผลเป็นคอลัมน์บนหน้าจอมือถือ */
+            }
+
+            .container a {
+                padding: 5px;
+                font-size: 14px;
+            }
+        }
+	
+	
+
+  </style>
+  
+  
+  
+  
+  <style>
+
+
+    /* พื้นที่สำหรับใส่ภาพประกอบ */
+    .image-container {
+      width: 100%;
+      height: 200px; /* กำหนดความสูงพื้นที่สำหรับภาพ */
+      background-color: #ddd; /* สีพื้นหลังที่ใช้เป็นตัวแทนพื้นที่ว่าง */
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      color: #888;
+	  
+    }
+
+    
+  </style>
+</head>
+<body>
+
+
+
+<div class="container">
+
+    <ul>
+      <li><a href="../project/print/index.html">PRINT4YOU</a></li>
+      <li><a href="../project/hbdshow/index.html">HBD4YOU</a></li>
+	  <li><a href="../project/art15/Artfu.html">ART4YOU</a></li>
+      <li><a href="../project/firework/fireworks.html">FIREWORKS4YOU</a></li>
+      <li><a href="../project/gifcute/gifcute.html">GIVEMEPLZ</a></li>
+    </ul>
+
+  </div>
+
+
+</body>
+</html>
