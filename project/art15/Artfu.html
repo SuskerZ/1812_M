@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    /* ธีมมืด (ค่าปริยาย) */
+    body {
+      background-color: #181818;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ปรับขนาดวีดีโอ */
+    video {
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+
+    /* ปุ่ม */
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* ธีมสว่าง */
+    .light-mode {
+      background-color: #ffffff;
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+
+  <video id="videoPlayer" controls>
+    <source src="HBDMOD1812_60.mp4" type="video/mp4">
+    เบราว์เซอร์ของคุณไม่รองรับวีดีโอ
+  </video>
+
+  <div>
+    <button id="themeToggleButton">เปิดไฟ/ปิดไฟ</button>
+  </div>
+
+  <script>
+    // ปรับธีม
+    const themeToggleButton = document.getElementById("themeToggleButton");
+
+    themeToggleButton.addEventListener("click", function() {
+      // สลับธีมระหว่างมืดและสว่าง
+      document.body.classList.toggle("light-mode");
+
+      // เปลี่ยนข้อความของปุ่ม
+      if (document.body.classList.contains("light-mode")) {
+        themeToggleButton.textContent = "ธีมมืด";
+      } else {
+        themeToggleButton.textContent = "ธีมสว่าง";
+      }
+    });
+  </script>
+</body>
+</html>
