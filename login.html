@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กรอกรหัสผ่าน</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #1e1e1e;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+        }
+        input {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 24px;
+            text-align: center;
+            background-color: #333;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 4px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .hint {
+            color: red;
+            margin-top: 10px;
+        }
+        .show-password {
+            margin-top: 10px;
+            cursor: pointer;
+            color: #4CAF50;
+            background: none;
+            border: none;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .password-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Password</h2>
+        <div class="password-container">
+            <input type="text" id="digit1" maxlength="1" oninput="moveFocus(this, 'digit2')" autofocus>
+            <input type="text" id="digit2" maxlength="1" oninput="moveFocus(this, 'digit3')">
+            <input type="text" id="digit3" maxlength="1" oninput="moveFocus(this, 'digit4')">
+            <input type="text" id="digit4" maxlength="1" oninput="moveFocus(this, 'digit5')">
+            <input type="text" id="digit5" maxlength="1" oninput="moveFocus(this, 'digit6')">
+            <input type="text" id="digit6" maxlength="1">
+        </div>
+        <button class="button" onclick="checkPassword()">ยืนยันรหัสผ่าน</button>
+        <div id="hint" class="hint"></div>
+        <button class="show-password" onclick="togglePassword()">แสดงรหัส</button>
+        <div id="error-message" class="error-message"></div>
+    </div>
+
+    <script>
+        let attempts = 0;
+        const correctPassword = "181735"; // เปลี่ยนรหัสที่นี่
+
+        // ฟังก์ชันย้ายโฟกัสไปยังช่องถัดไป
+        function moveFocus(currentInput, nextId) {
+            if (currentInput.value.length === 1) {
+                document.getElementById(nextId).focus();
+            }
+        }
+
+        // ฟังก์ชันตรวจสอบรหัส
+        function checkPassword() {
+            const password = (
+                document.getElementById('digit1').value +
+                document.getElementById('digit2').value +
+                document.getElementById('digit3').value +
+                document.getElementById('digit4').value +
+                document.getElementById('digit5').value +
+                document.getElementById('digit6').value
+            );
+
+            const hintElement = document.getElementById('hint');
+            const errorMessageElement = document.getElementById('error-message');
+
+            // ตรวจสอบรหัส
+            if (password === correctPassword) {
+                window.location.href = 'main_page/menu.html'; // ลิงก์ไปยังไฟล์ภายนอก
+            } else {
+                attempts++;
+                errorMessageElement.textContent = "รหัสผ่านยังไม่ถูกนะ";
+                if (attempts >= 10) {
+                    hintElement.textContent = "ลองใส่วันเกิดของเธอ ของเรา และลองเราของเธอกับของเรามารวมกันดูนะ";
+                } else {
+                    hintElement.textContent = "";
+                }
+            }
+        }
+
+        // ฟังก์ชันเปิดตาเพื่อแสดงรหัส
+        function togglePassword() {
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                if (input.type === "password") {
+                    input.type = "text";
+                } else {
+                    input.type = "password";
+                }
+            });
+        }
+
+        // จำกัดให้ใส่เฉพาะตัวเลข
+        const digits = document.querySelectorAll('input');
+        digits.forEach(input => {
+            input.addEventListener('input', function() {
+                // กรองให้รับแค่ตัวเลข
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+    </script>
+</body>
+</html>
