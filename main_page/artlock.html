@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIMELAPSE</title>
+  <style>
+    /* กำหนดธีมมืด */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* สไตล์ของฟอร์ม */
+    .form-container {
+      text-align: center;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .input-box {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      font-size: 24px;
+      margin: 0 10px;
+      background-color: #333;
+      border: 2px solid #444;
+      color: white;
+      border-radius: 8px;
+    }
+
+    /* ปุ่ม */
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #28a745;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #218838;
+    }
+
+    /* ข้อความแจ้งเตือน */
+    .error-message, .hint-message {
+      color: red;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .hint-message {
+      color: lightblue;
+    }
+
+    /* การรองรับหน้าจอมือถือ */
+    @media screen and (max-width: 600px) {
+      .input-box {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h1>ระบุไทม์แลปส์ที่ใช้ (หน่วยเป็นชั่วโมง)</h1>
+    <div class="input-container">
+      <input type="text" id="code1" class="input-box" maxlength="1">
+      <input type="text" id="code2" class="input-box" maxlength="1">
+    </div>
+    <button class="submit-btn" onclick="checkCode()">ยืนยัน</button>
+    <div id="error-message" class="error-message"></div>
+    <div id="hint-message" class="hint-message"></div>
+  </div>
+
+  <script>
+    let attemptCount = 0;
+    const correctCode = "16"; // ตัวอย่างรหัสที่ถูกต้อง
+    const redirectUrl = "../project/art15/Artfu.html"; // URL ของไฟล์ที่จะลิงก์เมื่อรหัสถูกต้อง
+
+    function checkCode() {
+      const code1 = document.getElementById("code1").value;
+      const code2 = document.getElementById("code2").value;
+      const errorMessage = document.getElementById("error-message");
+      const hintMessage = document.getElementById("hint-message");
+
+      // รีเซ็ตข้อความแจ้งเตือน
+      errorMessage.textContent = "";
+      hintMessage.textContent = "";
+
+      // ตรวจสอบรหัสที่กรอก
+      if (code1 === correctCode[0] && code2 === correctCode[1]) {
+        // ลิงก์ไปยังไฟล์ภายนอกเมื่อรหัสถูกต้อง
+        window.location.href = redirectUrl;
+      } else {
+        attemptCount++;
+        errorMessage.textContent = "รหัสไม่ถูกต้อง! ลองใหม่อีกครั้ง.";
+
+        if (attemptCount >= 10) {
+          hintMessage.textContent = "คำใบ้: รหัสเริ่มต้นด้วยตัวเลข 4.";
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
